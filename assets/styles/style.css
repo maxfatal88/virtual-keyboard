@@ -3,6 +3,7 @@
 }
 
 .textarea {
+  border: 1px double black;
   height: 100px;
   margin: 0 auto;
   display: block;
@@ -19,7 +20,7 @@
 }
 
 .keyboard {
-  height: 300px;
+  height: 230px;
   width: 704px;
   margin: 0 auto;
   padding: 5px;
@@ -35,6 +36,7 @@
   width: 40px;
   height: 40px;
   margin-left: 6px;
+  margin-bottom: 6px;
   font-weight: 500;
   line-height: 40px;
   text-align: center;
@@ -44,4 +46,30 @@
   cursor: pointer;
   user-select: none;
   transition: border-radius 0.3s, background-color 0.3s;
+}
+
+.Backspace,
+.ShiftLeft {
+  width: 100px;
+}
+
+.Tab {
+  width: 50px;
+}
+
+.CaseDown {
+  width: 100px;
+}
+
+.CapsLock {
+  width: 100px;
+}
+
+.Enter,
+.ShiftRight {
+  width: 86px
+}
+
+.Space{
+  width: 330px;
 }
