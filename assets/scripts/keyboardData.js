@@ -1,4 +1,4 @@
-let keys = {
+let objectKeys = {
 Backquote :'`',
 Digit1 :'1',
 Digit2 :'2',
@@ -55,7 +55,7 @@ Slash :'/',
 ArrowUp :'↑',
 ShiftRight :'Shift',
 ControlLeft :'Ctrl',
-MetaLeft :'Meta',
+MetaLeft :'Start',
 AltLeft :'Alt',
 Space :' ',
 AltRight :'Alt',
@@ -65,4 +65,4 @@ ArrowRight :'→',
 ControlRight :'Ctrl',
 }
 
-export { keys };
+export { objectKeys };

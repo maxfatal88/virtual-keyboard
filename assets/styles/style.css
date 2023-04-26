@@ -4,7 +4,7 @@
 
 .textarea {
   border: 1px double black;
-  height: 100px;
+  height: 200px;
   margin: 0 auto;
   display: block;
   font-size: 18px;
@@ -46,6 +46,16 @@
   cursor: pointer;
   user-select: none;
   transition: border-radius 0.3s, background-color 0.3s;
+}
+
+.description{
+  margin: 5px auto;
+  text-align: center;
+  font-size: 24px;
+}
+
+.ligthBtn {
+  background: #196a52;
 }
 
 .Backspace,
