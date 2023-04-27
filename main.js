@@ -130,6 +130,14 @@ function capsLockPress(event) {
   }
 }
 
+function changeLang (event) {
+  if (event.code === 'ShiftLeft'&& event.code === 'ControlLeft'){
+    console.log('changelang');
+  }
+}
+
+
+
 document.addEventListener("keydown", ligthButtonOn);
 document.addEventListener("keyup", ligthButtonOff);
 
@@ -137,3 +145,5 @@ document.addEventListener("keydown", pressShift);
 document.addEventListener("keyup", unPressShift);
 
 document.addEventListener("keydown", capsLockPress);
+
+document.addEventListener("keydown", changeLang);
