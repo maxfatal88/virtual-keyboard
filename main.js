@@ -1,6 +1,5 @@
 // import './assets/styles/style.css'
-import { objectKeysEn } from "./assets/scripts/keyboardData.js";
-import { objectKeysRu } from "./assets/scripts/keyboardData.js";
+import { objectKeysEn, objectKeysRu } from "./assets/scripts/keyboardData.js";
 
 const BODY = document.body;
 let conteiner = null;
@@ -13,12 +12,14 @@ let language = null;
 let buttons = null;
 let capsLock = false;
 let objectKeys = null
-let lang = 'en'
+let lang = localStorage.getItem('lang')||'en'
 
+function changeLangFlag() {
 if(lang === 'en'){
-  console.log('en');
   objectKeys = objectKeysEn
 } else {objectKeys = objectKeysRu}
+}
+changeLangFlag()
 
 conteiner = createElement("div", "conteiner");
 title = createElement("p", "title", "Виртуальная клавиатура");
@@ -52,7 +53,8 @@ function createElement(tag, _class, textContent) {
   return element;
 }
 
-function createKeyboard(lang) {
+function createKeyboard() {
+  console.log(lang);
   for (key in objectKeys) {
     const innerText = objectKeys[key].symbol;
     let buttom = createElement("div", "key", innerText);
@@ -129,21 +131,45 @@ function capsLockPress(event) {
     capsLock = false;
   }
 }
+let pressed = new Set();
 
-function changeLang (event) {
-  if (event.code === 'ShiftLeft'&& event.code === 'ControlLeft'){
-    console.log('changelang');
+function pressChangeLang (event) {
+let codes = ['ShiftLeft','ControlLeft']
+ pressed.add(event.code)
+ for(let code of codes){
+  if(!pressed.has(code)){
+    console.log(pressed);
+    return
   }
+ }
+ pressed.clear()
+changeLang()
 }
 
+function removeKey(event) {
+  console.log('pressed');
+  pressed.delete(event.code)
+}
 
+function changeLang() {
+  if(lang === 'en'){
+    lang = 'ru'
+  } else {
+    lang = 'en'
+  }
+  localStorage.setItem('lang', lang)
+  changeLangFlag()
+  buttons.forEach((btn)=>{
+    btn.innerText = objectKeys[btn.getAttribute("id")].symbol
+  })
+}
+console.log(textArea);
+textArea.onblur = () => textArea.focus()
 
 document.addEventListener("keydown", ligthButtonOn);
 document.addEventListener("keyup", ligthButtonOff);
-
 document.addEventListener("keydown", pressShift);
 document.addEventListener("keyup", unPressShift);
-
 document.addEventListener("keydown", capsLockPress);
-
-document.addEventListener("keydown", changeLang);
+document.addEventListener("keydown", pressChangeLang);
+document.addEventListener("keyUp", removeKey);
