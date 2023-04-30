@@ -14,14 +14,15 @@ let capsLock = false;
 let objectKeys = null;
 let lang = localStorage.getItem("lang") || "en";
 
-function changeLangData() {
-  if (lang === "en") {
-    objectKeys = objectKeysEn;
-  } else {
-    objectKeys = objectKeysRu;
+const createElement = (tag, _class, textContent) => {
+  let element;
+  element = document.createElement(tag);
+  element.classList.add(_class);
+  if (textContent) {
+    element.innerText = textContent;
   }
+  return element;
 }
-changeLangData();
 
 conteiner = createElement("div", "conteiner");
 title = createElement("p", "title", "Виртуальная клавиатура");
@@ -47,17 +48,16 @@ conteiner.append(keyboard);
 conteiner.append(description);
 conteiner.append(language);
 
-function createElement(tag, _class, textContent) {
-  let element;
-  element = document.createElement(tag);
-  element.classList.add(_class);
-  if (textContent) {
-    element.innerText = textContent;
+const changeLangData = ()=> {
+  if (lang === "en") {
+    objectKeys = objectKeysEn;
+  } else {
+    objectKeys = objectKeysRu;
   }
-  return element;
 }
+changeLangData();
 
-function createKeyboard() {
+const createKeyboard = ()=> {
   for (key in objectKeys) {
     const innerText = objectKeys[key].symbol;
     let buttom = createElement("div", "key", innerText);
@@ -71,20 +71,20 @@ function createKeyboard() {
 createKeyboard();
 
 buttons = document.querySelectorAll(".key");
-function blockFunctionalButton(event){
+
+const blockFunctionalButton = (event)=>{
   event.preventDefault()
 }
 
-function ligthButtonOn(event) {
+const ligthButtonOn = (event)=> {
   buttons.forEach((btn) => {
-    if (btn.classList.contains(event.code) && !event.repeat) {
+    if (btn.id === event.code && !event.repeat) {
       btn.classList.add("ligthBtn");
     }
   });
 }
 
-function ligthButtonOff(event) {
-  let buttons = document.querySelectorAll(".key");
+const ligthButtonOff = (event)=> {
   buttons.forEach((btn) => {
     if (btn.classList.contains(event.code)) {
       btn.classList.remove("ligthBtn");
@@ -92,7 +92,7 @@ function ligthButtonOff(event) {
   });
 }
 
-function pressShift(event) {
+const pressShift = (event)=> {
   if (event.code === "ShiftLeft") {
     buttons.forEach((btn) => {
       if (capsLock && btn.getAttribute("type") === "letter") {
@@ -106,7 +106,7 @@ function pressShift(event) {
   }
 }
 
-function unPressShift(event) {
+const unPressShift = (event)=> {
   if (event.code === "ShiftLeft") {
     buttons.forEach((btn) => {
       if (capsLock && btn.getAttribute("type") === "letter") {
@@ -120,27 +120,30 @@ function unPressShift(event) {
   }
 }
 
-function capsLockPress(event) {
-  if (event.code === "CapsLock" && !capsLock) {
-    console.log(capsLock);
+const capsLockPress = (event)=> {
+  const btnCapsLock = document.querySelector('.CapsLock')
+  if ((event.code === "CapsLock" || event.target.id  === "CapsLock") && !capsLock) {
     buttons.forEach((btn) => {
       if (btn.getAttribute("type") === "letter") {
         btn.innerHTML = btn.innerHTML.toUpperCase();
       }
     });
+    btnCapsLock.classList.add("ligthBtnCaps");
     capsLock = true;
-  } else if (event.code === "CapsLock" && capsLock) {
+  } else if ((event.code === "CapsLock" || event.target.id  === "CapsLock") && capsLock) {
+    console.log('ELSE');
     buttons.forEach((btn) => {
       if (btn.getAttribute("type") === "letter") {
         btn.innerHTML = btn.innerHTML.toLowerCase();
       }
     });
+    btnCapsLock.classList.remove("ligthBtnCaps");
     capsLock = false;
   }
 }
 let pressed = new Set();
 
-function pressChangeLang(event) {
+const pressChangeLang = (event)=> {
   let codes = ["ShiftLeft", "ControlLeft"];
   pressed.add(event.code);
   for (let code of codes) {
@@ -152,11 +155,11 @@ function pressChangeLang(event) {
   changeLang();
 }
 
-function removeKey(event) {
+const removeKey = (event)=> {
   pressed.delete(event.code);
 }
 
-function changeLang() {
+const changeLang = ()=> {
   if (lang === "en") {
     lang = "ru";
   } else {
@@ -169,44 +172,45 @@ function changeLang() {
   });
 }
 
-let printTextKeyboard = (event) => {
-  const textBeforeCursor = textArea.selectionStart
-  const textAfterCursor = textArea.selectionEnd
-  console.log(textBeforeCursor);
-  console.log(textAfterCursor);
+const printTextKeyboard = (event) => {
   let btns = document.querySelectorAll('[type="letter"], [type="number"]')
   btns.forEach((btn) => {
-    if (btn.id === event.code) {
+    if (btn.id === event.code||btn.id === event.target.id) {
       textArea.setRangeText(btn.innerHTML, textArea.selectionStart, textArea.selectionEnd, "end");
     }
   })
 }
 
 let functionalBtn = (event) => {
-    if(event.code ==='Backspace')  {
-      textArea.value = textArea.value.slice(0, textArea.value.length - 1)
-    }
-    if(event.code ==='Enter')  {
+  const cursorPos = textArea.selectionStart
+    if(event.code ==='Enter'|| event.target.id ==='Enter')  {
+      console.log('enter');
       textArea.setRangeText('\n', textArea.selectionStart, textArea.selectionEnd, "end");
     }
-    if(event.code ==='Tab')  {
+    if(event.code ==='Tab'|| event.target.id === 'Tab')  {
       textArea.setRangeText('    ', textArea.selectionStart, textArea.selectionEnd, "end");
     }
-    if(event.code ==='Delete')  {
-      textArea.value = textArea.value.slice(0, textArea.selectionStart) + textArea.value.slice(textArea.selectionStart + 1)
+    if(event.code ==='Backspace'|| event.target.id === 'Backspace')  {
+      textArea.value = textArea.value.slice(0,textArea.selectionStart-1) + textArea.value.slice(textArea.selectionStart,textArea.length)
+      textArea.selectionStart = textArea.selectionEnd = cursorPos - 1
     }
-
+    if(event.code ==='Delete'|| event.target.id === 'Delete')  {
+      textArea.value = textArea.value.slice(0, textArea.selectionStart) + textArea.value.slice(textArea.selectionStart + 1)
+      textArea.selectionStart = textArea.selectionEnd = cursorPos
+    }
 }
-
-textArea.onblur = () => textArea.focus();
 
 document.addEventListener("keydown", blockFunctionalButton);
 document.addEventListener("keydown", ligthButtonOn);
+document.addEventListener("click", ligthButtonOn);
 document.addEventListener("keyup", ligthButtonOff);
 document.addEventListener("keydown", pressShift);
 document.addEventListener("keyup", unPressShift);
 document.addEventListener("keydown", capsLockPress);
+document.addEventListener("click", capsLockPress);
 document.addEventListener("keydown", pressChangeLang);
 document.addEventListener("keyup", removeKey);
 document.addEventListener("keydown", printTextKeyboard);
+document.addEventListener('click', printTextKeyboard )
 document.addEventListener("keydown", functionalBtn);
+document.addEventListener("click", functionalBtn);

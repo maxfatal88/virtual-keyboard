@@ -1,4 +1,4 @@
-let objectKeysEn = {
+const objectKeysEn = {
   Backquote: { symbol: '`', shift: '~', type: 'number' },
   Digit1: { symbol: '1', shift: '!', type: 'number' },
   Digit2: { symbol: '2', shift: '@', type: 'number' },
@@ -65,7 +65,7 @@ let objectKeysEn = {
   ControlRight: { symbol: 'Ctrl', shift: 'Ctrl', type: 'functional' },
 }
 
-let objectKeysRu = {
+const objectKeysRu = {
   Backquote: { symbol: '`', shift: 'Ё', type: 'number' },
   Digit1: { symbol: '1', shift: '!', type: 'number' },
   Digit2: { symbol: '2', shift: '"', type: 'number' },
@@ -131,4 +131,4 @@ let objectKeysRu = {
   ArrowRight: { symbol: '→', shift: '→', type: 'letter' },
   ControlRight: { symbol: 'Ctrl', shift: 'Ctrl', type: 'functional' },
 }
-export { objectKeysEn, objectKeysRu };
+export { objectKeysEn, objectKeysRu};
