@@ -1,0 +1,17 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "overrides": [
+    ],
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "import/extensions": [
+        "error", "ignorePackages"
+        ]
+    },
+    "extends": "airbnb-base"
+}

@@ -47,6 +47,15 @@
   transition: all 0.3s ease-out;
 }
 
+.key:hover{
+  background: #7a908a;
+}
+
+.key:active{
+  background: #196a52;
+  border-radius: 15px;
+}
+
 .description{
   margin: 5px auto;
   text-align: center;

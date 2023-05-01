@@ -39,7 +39,7 @@ const objectKeysEn = {
   KeyK: { symbol: 'k', shift: 'K', type: 'letter' },
   KeyL: { symbol: 'l', shift: 'L', type: 'letter' },
   Semicolon: { symbol: ';', shift: ':', type: 'number' },
-  Quote: { symbol: '\'', shift: '\"', type: 'number' },
+  Quote: { symbol: '\'', shift: '\'', type: 'number' },
   Enter: { symbol: 'Enter', shift: 'Enter', type: 'functional' },
   ShiftLeft: { symbol: 'Shift', shift: 'Shift', type: 'functional' },
   KeyZ: { symbol: 'z', shift: 'Z', type: 'letter' },
@@ -57,13 +57,13 @@ const objectKeysEn = {
   ControlLeft: { symbol: 'Ctrl', shift: 'Ctrl', type: 'functional' },
   MetaLeft: { symbol: 'Start', shift: 'Start', type: 'functional' },
   AltLeft: { symbol: 'Alt', shift: 'Alt', type: 'functional' },
-  Space: { symbol: '\ ', shift: '\ ', type: 'letter' },
+  Space: { symbol: ' ', shift: ' ', type: 'letter' },
   AltRight: { symbol: 'Alt', shift: 'Alt', type: 'functional' },
   ArrowLeft: { symbol: '←', shift: '←', type: 'letter' },
   ArrowDown: { symbol: '↓', shift: '↓', type: 'letter' },
   ArrowRight: { symbol: '→', shift: '→', type: 'letter' },
   ControlRight: { symbol: 'Ctrl', shift: 'Ctrl', type: 'functional' },
-}
+};
 
 const objectKeysRu = {
   Backquote: { symbol: '`', shift: 'Ё', type: 'number' },
@@ -124,11 +124,11 @@ const objectKeysRu = {
   ControlLeft: { symbol: 'Ctrl', shift: 'Ctrl', type: 'functional' },
   MetaLeft: { symbol: 'Start', shift: 'Start', type: 'functional' },
   AltLeft: { symbol: 'Alt', shift: 'Alt', type: 'functional' },
-  Space: { symbol: '\ ', shift: '\ ', type: 'letter' },
+  Space: { symbol: ' ', shift: ' ', type: 'letter' },
   AltRight: { symbol: 'Alt', shift: 'Alt', type: 'functional' },
   ArrowLeft: { symbol: '←', shift: '←', type: 'letter' },
   ArrowDown: { symbol: '↓', shift: '↓', type: 'letter' },
   ArrowRight: { symbol: '→', shift: '→', type: 'letter' },
   ControlRight: { symbol: 'Ctrl', shift: 'Ctrl', type: 'functional' },
-}
-export { objectKeysEn, objectKeysRu};
+};
+export { objectKeysEn, objectKeysRu };
