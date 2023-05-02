@@ -1,0 +1,99 @@
+.conteiner {
+  margin: 0 auto;
+}
+
+.textarea {
+  border: 1px double black;
+  height: 200px;
+  margin: 0 auto;
+  display: block;
+  font-size: 18px;
+  color: #444444;
+  margin: 10px auto;
+  width: 704px;
+}
+
+.title {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 30px;
+}
+
+.keyboard {
+  height: 230px;
+  width: 704px;
+  margin: 0 auto;
+  padding: 5px;
+  padding-left: 0;
+  padding-bottom: 0;
+  background: #8483836e;
+  border: 2px solid #222222;
+  border-radius: 6px;
+}
+
+.key{
+  float: left;
+  width: 40px;
+  height: 40px;
+  margin-left: 6px;
+  margin-bottom: 6px;
+  line-height: 40px;
+  text-align: center;
+  color: #020202;
+  background: #fffbfb;
+  border-radius: 3px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s ease-out;
+}
+
+.key:hover{
+  background: #7a908a;
+}
+
+.key:active{
+  background: #196a52;
+  border-radius: 15px;
+}
+
+.description{
+  margin: 5px auto;
+  text-align: center;
+  font-size: 16px;
+}
+
+.ligthBtn {
+  background: #196a52;
+  border-radius: 15px;
+}
+
+.ligthBtnCaps {
+  background: #196a52;
+  border-radius: 15px;
+}
+
+.Backspace,
+.ShiftLeft {
+  width: 100px;
+}
+
+.Tab {
+  width: 50px;
+}
+
+.CaseDown {
+  width: 100px;
+}
+
+.CapsLock {
+  width: 100px;
+}
+
+.Enter,
+.ShiftRight {
+  width: 86px
+}
+
+.Space{
+  width: 330px;
+}
